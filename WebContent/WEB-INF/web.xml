@@ -4,17 +4,14 @@
   <servlet>
     <description>
 		</description>
-    <display-name>ShopServlet</display-name>
+    <display-name>ControlServlet</display-name>
     <servlet-name>ControlServlet</servlet-name>
-    <servlet-class>servlet.MarcosControlServlet</servlet-class>
+    <servlet-class>Servlet.MarcosControlServlet</servlet-class>
     <init-param>
       <param-name>base</param-name>
       <param-value>/ControlMarcos/marcos</param-value>
     </init-param>
-    <!-- <init-param>
-      <param-name>imageURL</param-name>
-      <param-value>/eshop/images/</param-value>
-    </init-param>-->
+    
     <init-param>
       <param-name>jdbcDriver</param-name>
       <param-value>com.mysql.jdbc.Driver</param-value>
@@ -34,6 +31,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ControlServlet</servlet-name>
-    <url-pattern>/marcos/</url-pattern>
+    <url-pattern>/marcos/*</url-pattern>
   </servlet-mapping>
 </web-app>
