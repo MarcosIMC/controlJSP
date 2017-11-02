@@ -30,7 +30,28 @@ public class MarcosControlServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
 
     }
+    
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		// TODO Auto-generated method stub
+		super.init(config);
+		
+		ServletContext context = config.getServletContext();
+		context.setAttribute("base", config.getInitParameter("base"));
+		
+		DataManager dataManager = new DataManager();
+		dataManager.setDbURL(config.getInitParameter("dbURL"));
+		dataManager.setDbUserName(config.getInitParameter("dbUserName"));
+		dataManager.setDbPassword(config.getInitParameter("dbPassword"));
+		conn = (DataManager) dataManager.getConnection();
+		context.setAttribute("dataManager", dataManager);
 
+		try { // load the database JDBC driver
+			Class.forName(config.getInitParameter("jdbcDriver"));
+		} catch (ClassNotFoundException e) {
+			System.out.println(e.toString());
+		}
+	}
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -73,27 +94,7 @@ public class MarcosControlServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
-	@Override
-	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
-		super.init(config);
-		
-		ServletContext context = config.getServletContext();
-		context.setAttribute("base", config.getInitParameter("base"));
-		
-		DataManager dataManager = new DataManager();
-		dataManager.setDbURL(config.getInitParameter("dbURL"));
-		dataManager.setDbUserName(config.getInitParameter("dbUserName"));
-		dataManager.setDbPassword(config.getInitParameter("dbPassword"));
-		conn = (DataManager) dataManager.getConnection();
-		context.setAttribute("dataManager", dataManager);
 
-		try { // load the database JDBC driver
-			Class.forName(config.getInitParameter("jdbcDriver"));
-		} catch (ClassNotFoundException e) {
-			System.out.println(e.toString());
-		}
-	}
 	
 	
 

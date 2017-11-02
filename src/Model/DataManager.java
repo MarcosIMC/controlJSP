@@ -39,6 +39,7 @@ public class DataManager {
   public Connection getConnection() {
     Connection conn = null;
     try {
+    	System.out.println("url "+getDbURL()+" user "+getDbUserName()+" pass "+getDbPassword());
       conn = DriverManager.getConnection(getDbURL(), getDbUserName(),
           getDbPassword());
       }
