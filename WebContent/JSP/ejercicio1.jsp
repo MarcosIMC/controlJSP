@@ -12,12 +12,14 @@
 	<ol>
 	
 		<%
-			String[] direcciones = (String[]) request.getAttribute("links");
+			String[] direcciones = (String[]) session.getAttribute("links");
+		
+		System.out.println(direcciones);
 		
 			for(int i = 0; i < direcciones.length; i++){
 				%>
 				
-				<li href=<%= direcciones[i] %>><%= direcciones[i] %></li>
+				<a href=<%= direcciones[i] %> target="_blank"><%= direcciones[i] %></a>
 			<%	
 			}
 		%>

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Model.DataManager;
+
 /**
  * Servlet implementation class MarcosControlServlet
  */
@@ -47,7 +49,8 @@ public class MarcosControlServlet extends HttpServlet {
 				break;
 				
 			case "ejercicio2":
-				url = base + "ejecricio2.jsp";
+				
+				url = base + "ejercicio2.jsp";
 				break;
 			}
 		}
@@ -71,20 +74,35 @@ public class MarcosControlServlet extends HttpServlet {
 		
 		ServletContext context = config.getServletContext();
 		context.setAttribute("base", config.getInitParameter("base"));
+		
+		DataManager dataManager = new DataManager();
+		dataManager.setDbURL(config.getInitParameter("dbURL"));
+		dataManager.setDbUserName(config.getInitParameter("dbUserName"));
+		dataManager.setDbPassword(config.getInitParameter("dbPassword"));
+		context.setAttribute("dataManager", dataManager);
+
+		try { // load the database JDBC driver
+			Class.forName(config.getInitParameter("jdbcDriver"));
+		} catch (ClassNotFoundException e) {
+			System.out.println(e.toString());
+		}
 	}
 	
 	
 
-	public static void obtenerLink(HttpServletRequest request) {
+	private void obtenerLink(HttpServletRequest request) {
 		String[] arrayLinks = new String[5];
 		
-		arrayLinks[0] = "www.google.com";
-		arrayLinks[1] = "www.youtube.com";
-		arrayLinks[2] = "www.amazon.com";
-		arrayLinks[3] = "www.eurogamer.es";
-		arrayLinks[4] = "www.marca.com";
+		arrayLinks[0] = "http://www.google.com";
+		arrayLinks[1] = "http://www.youtube.com";
+		arrayLinks[2] = "http://www.amazon.com";
+		arrayLinks[3] = "http://www.eurogamer.es";
+		arrayLinks[4] = "http://www.marca.com";
 		
 		request.getSession().setAttribute("links", arrayLinks);
 	}
 	
+	private void comprobarSesion() {
+		
+	}
 }
