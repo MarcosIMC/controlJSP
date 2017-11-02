@@ -4,19 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Login User</title>
+<title>Sesion Iniciada</title>
 </head>
 <body>
-	
-	<form method="post" action="?peticion=logueado">
-		<p>Usuario --></p>
-		<input name="user" type="text" placeholder="Usuario">
-		
-		<p>Password --></p>
-		<input name="pass" type="password" placeholder="Contraseña">
-		
-		<input type="submit" value = "Iniciar Sesión">
-	</form>
-	
+<p>YEEEEEEEEEEEEEEEP</p>
 </body>
 </html>

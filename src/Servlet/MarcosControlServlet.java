@@ -20,6 +20,7 @@ import Model.DataManager;
 @WebServlet("/MarcosControlServlet")
 public class MarcosControlServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	DataManager conn = null;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -52,6 +53,11 @@ public class MarcosControlServlet extends HttpServlet {
 				
 				url = base + "ejercicio2.jsp";
 				break;
+				
+			case "logueado":
+				comprobarDatos();
+				url = base + "logueado.jsp";
+				break;
 			}
 		}
 		System.out.println("URL "+url);
@@ -79,6 +85,7 @@ public class MarcosControlServlet extends HttpServlet {
 		dataManager.setDbURL(config.getInitParameter("dbURL"));
 		dataManager.setDbUserName(config.getInitParameter("dbUserName"));
 		dataManager.setDbPassword(config.getInitParameter("dbPassword"));
+		conn = (DataManager) dataManager.getConnection();
 		context.setAttribute("dataManager", dataManager);
 
 		try { // load the database JDBC driver
@@ -102,7 +109,9 @@ public class MarcosControlServlet extends HttpServlet {
 		request.getSession().setAttribute("links", arrayLinks);
 	}
 	
-	private void comprobarSesion() {
-		
+	private void comprobarDatos() {
+		if(conn !=null) {
+			System.out.println("Existe conexion");
+		}
 	}
 }
