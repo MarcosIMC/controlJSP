@@ -4,9 +4,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Ejercicio 1</title>
 </head>
 <body>
-
+	<p>Lista de enlaces a diferentes Webs</p>
+	
+	<ol>
+	
+		<%
+			String[] direcciones = (String[]) request.getAttribute("links");
+		
+			for(int i = 0; i < direcciones.length; i++){
+				%>
+				
+				<li href=<%= direcciones[i] %>><%= direcciones[i] %></li>
+			<%	
+			}
+		%>
+	
+	</ol>
 </body>
 </html>

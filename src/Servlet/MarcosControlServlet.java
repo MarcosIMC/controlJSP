@@ -1,6 +1,7 @@
 package Servlet;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -41,6 +42,7 @@ public class MarcosControlServlet extends HttpServlet {
 		if(peticion != null) {
 			switch (peticion) {
 			case "ejercicio1":
+				obtenerLink(request);
 				url = base + "ejercicio1.jsp";
 				break;
 				
@@ -73,4 +75,16 @@ public class MarcosControlServlet extends HttpServlet {
 	
 	
 
+	public static void obtenerLink(HttpServletRequest request) {
+		String[] arrayLinks = new String[5];
+		
+		arrayLinks[0] = "www.google.com";
+		arrayLinks[1] = "www.youtube.com";
+		arrayLinks[2] = "www.amazon.com";
+		arrayLinks[3] = "www.eurogamer.es";
+		arrayLinks[4] = "www.marca.com";
+		
+		request.getSession().setAttribute("links", arrayLinks);
+	}
+	
 }
