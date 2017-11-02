@@ -21,6 +21,7 @@ import Model.DataManager;
 public class MarcosControlServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	DataManager conn = null;
+	DataManager dataManager;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -39,7 +40,7 @@ public class MarcosControlServlet extends HttpServlet {
 		ServletContext context = config.getServletContext();
 		context.setAttribute("base", config.getInitParameter("base"));
 		
-		DataManager dataManager = new DataManager();
+		dataManager = new DataManager();
 		dataManager.setDbURL(config.getInitParameter("dbURL"));
 		dataManager.setDbUserName(config.getInitParameter("dbUserName"));
 		dataManager.setDbPassword(config.getInitParameter("dbPassword"));
@@ -76,8 +77,18 @@ public class MarcosControlServlet extends HttpServlet {
 				break;
 				
 			case "logueado":
-				comprobarDatos();
-				url = base + "logueado.jsp";
+				String user = request.getParameter("user");
+				String pass = request.getParameter("pass");
+				Boolean existe = dataManager.comprobarUsuario(user, pass);
+				//comprobarDatos(user, pass);
+				
+				if(existe) {
+					System.out.println("Dentro de if existe");
+					url = base + "logueado.jsp";
+				}else {
+					
+				}
+				
 				break;
 			}
 		}

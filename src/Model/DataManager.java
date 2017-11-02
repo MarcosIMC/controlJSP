@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import Model.UsuariosPeer;
 
 public class DataManager {
   private String dbURL = "";
@@ -54,4 +55,10 @@ public class DataManager {
       catch (SQLException e) { }
       }
     }
+  
+  ////////////////////////////Datos Usuario ///////////////////////////////////
+  
+  public boolean comprobarUsuario(String user, String pass) {
+	  return UsuariosPeer.obtenerUsuarios(user, pass, this);
+  }
 }
