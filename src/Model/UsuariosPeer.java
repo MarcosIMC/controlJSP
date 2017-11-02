@@ -18,7 +18,7 @@ public class UsuariosPeer {
 	          try {
 	            ResultSet rs = s.executeQuery(sql);
 	            try {
-	            	if(rs != null) {
+	            	if(rs.next() != false) {
 	            		System.out.println(rs.getString(1));
 	            		return true;
 	            	}
@@ -28,7 +28,7 @@ public class UsuariosPeer {
 	          finally { s.close(); }
 	          }
 	        catch (SQLException e) {
-	          System.out.println("Could not search for books:" + e.getMessage());
+	          System.out.println("Could not search for usuarios:" + e.getMessage());
 	          }
 	        finally {
 	          manager.putConnection(conn);

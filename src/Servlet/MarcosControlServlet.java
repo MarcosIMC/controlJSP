@@ -1,7 +1,6 @@
 package Servlet;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -20,7 +19,6 @@ import Model.DataManager;
 @WebServlet("/MarcosControlServlet")
 public class MarcosControlServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	DataManager conn = null;
 	DataManager dataManager;
        
     /**
@@ -44,7 +42,6 @@ public class MarcosControlServlet extends HttpServlet {
 		dataManager.setDbURL(config.getInitParameter("dbURL"));
 		dataManager.setDbUserName(config.getInitParameter("dbUserName"));
 		dataManager.setDbPassword(config.getInitParameter("dbPassword"));
-		conn = (DataManager) dataManager.getConnection();
 		context.setAttribute("dataManager", dataManager);
 
 		try { // load the database JDBC driver
@@ -83,10 +80,10 @@ public class MarcosControlServlet extends HttpServlet {
 				//comprobarDatos(user, pass);
 				
 				if(existe) {
-					System.out.println("Dentro de if existe");
+					request.getSession().setAttribute("user", user);
 					url = base + "logueado.jsp";
 				}else {
-					
+					url = base + "ejercicio2.jsp";
 				}
 				
 				break;
@@ -119,11 +116,5 @@ public class MarcosControlServlet extends HttpServlet {
 		arrayLinks[4] = "http://www.marca.com";
 		
 		request.getSession().setAttribute("links", arrayLinks);
-	}
-	
-	private void comprobarDatos() {
-		if(conn !=null) {
-			System.out.println("Existe conexion");
-		}
 	}
 }

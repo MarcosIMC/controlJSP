@@ -7,7 +7,6 @@
 <title>Login User</title>
 </head>
 <body>
-	
 	<form method="post" action="?peticion=logueado">
 		<p>Usuario --></p>
 		<input name="user" type="text" placeholder="Usuario">

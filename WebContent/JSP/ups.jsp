@@ -8,5 +8,7 @@
 </head>
 <body>
 <h1>OPS!!!!! los datos introducidos no son correctos =(</h1>
+
+<a href="#" value="INICIO"></a>
 </body>
 </html>

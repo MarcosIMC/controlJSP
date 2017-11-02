@@ -7,6 +7,6 @@
 <title>Sesion Iniciada</title>
 </head>
 <body>
-<p>YEEEEEEEEEEEEEEEP</p>
+<p>Bienvenido <%= session.getAttribute("user") %></p>
 </body>
 </html>
